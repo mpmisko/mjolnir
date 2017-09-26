@@ -36,6 +36,7 @@ class CallController < ApplicationController
                   :timestamp_start,
                   :timestamp_end,
                   :caller_number,
+                  :receiver_number,
                   sentences: [])
   end
 
@@ -44,6 +45,7 @@ class CallController < ApplicationController
       timestamp_call_start: params['timestamp_start'],
       timestamp_call_end: params['timestamp_end'],
       caller_number: params['caller_number'],
+      receiver_number: params['receiver_number'],
       content: params['sentences'].to_s,
       response: 'response not received' }
   end
