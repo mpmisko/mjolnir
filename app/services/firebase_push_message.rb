@@ -12,7 +12,9 @@ module MessagingService
 
     def send
       client = fcm
-      client.send([@id.to_s], options(@response))
+      answer = client.send([@id.to_s], options(@response))
+      Rails.logger.info "Firebase answer: #{answer.to_s}"
+      answer
     end
 
     private
