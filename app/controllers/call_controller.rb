@@ -22,9 +22,11 @@ class CallController < ApplicationController
     if firebase_success?(firebase_answer)
       render status: :ok, json: { timestamp: Time.now.to_i.to_s }
     else
+      Rails.logger.error "Unable to communicate firebase: invalid token"      
       render status: :unathorized, json: { message: 'invalid firebase token' }
     end
   rescue ActiveRecord::RecordNotUnique
+    Rails.logger.error "Unable to store call: duplicate call id"
     render status: :internal_server_error,
            json: { message: 'duplicate call id' }
   end
