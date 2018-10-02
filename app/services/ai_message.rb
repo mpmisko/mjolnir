@@ -53,8 +53,7 @@ module MessagingService
     end
 
     def useful?(response)
-      return false if response.dig(:result, :parameters).nil?
-      true
+      return !response.dig(:result, :parameters).nil?
     end
   end
 end
