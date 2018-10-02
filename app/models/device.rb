@@ -4,7 +4,7 @@ class Device < ApplicationRecord
   def self.get_device(info_hash)
     device = find_or_create_by(device_uuid: info_hash[:device_uuid])
 
-    # auto-update push_token and user_agent
+    # auto-update push_token and user_agent/Users/michal/dev/summapp/mjolnir/app/models/device.rb
     unless device.user_agent == info_hash[:user_agent]
       device.update_attribute(:user_agent, info_hash[:user_agent])
     end

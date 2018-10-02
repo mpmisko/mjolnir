@@ -22,11 +22,11 @@ class CallController < ApplicationController
     if firebase_success?(firebase_answer)
       render status: :ok, json: { timestamp: Time.now.to_i.to_s }
     else
-      Rails.logger.error "Unable to communicate firebase: invalid token"      
+      Rails..error "Unable to communicate firebase: invalid token"      
       render status: :unathorized, json: { message: 'invalid firebase token' }
     end
   rescue ActiveRecord::RecordNotUnique
-    Rails.logger.error "Unable to store call: duplicate call id"
+    Rails..error "Unable to store call: duplicate call id"
     render status: :internal_server_error,
            json: { message: 'duplicate call id' }
   end
@@ -69,7 +69,7 @@ class CallController < ApplicationController
 
   def send_ai_message(device_call)
     ai_message_service = MessagingService::AiMessage.new(device_call)
-    Rails.logger.info 'Sending message to API.AI'
+    Rails..info 'Sending message to API.AI'
     ai_answers = ai_message_service.send_patch
     ai_answers
   end
